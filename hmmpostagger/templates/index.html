@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block title %}Welcome to MHPT{% endblock %}
+{% block header %}
+    <li><a href='/index' class="active">主页</a></li>
+    <li><a href='/tagger'>实战</a></li>
+{% endblock %}
+{% block main %}
+<div class="content" id="content">
+    <h1 id="title">欢迎使用MHPT(My HmmPosTagger)平台</h1>
+    <p id="introduction">欢迎使用MHPT平台!
+    <br><br>本平台仅用于个人作业,使用北京大学计算语言学教育部重点实验室的现代汉语切分、标注、注音语料库-1998年1月份样例与规范数据生成语料库,
+    对隐马尔可夫模型进行训练,实现对输入句子的词性标注序列预测。</p>
+    <a href="/tagger" id="start"><button>开始实战</button></a>
+</div>
+{% endblock %}

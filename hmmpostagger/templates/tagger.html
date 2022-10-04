@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block title %}实战{% endblock %}
+{% block header %}
+    <li><a href='/index'>主页</a></li>
+    <li><a href='/tagger' class="active">实战</a></li>
+{% endblock %}
+{% block main %}
+    <div id="container" class="'container">
+        <div id="row">
+            <h3 id="loadtitle">输入中文句子, 点击按钮进行词性标注</h3>
+            <textarea id="userinput"></textarea>
+            <button id="analysis" onclick="tagger()">分析</button>
+        </div>
+        <div id="result" style="display: none;">
+            <h3 id="title">词性标注结果</h3>
+            <div id="board"></div>
+        </div>
+    </div>
+    <script>
+        function tagger(){
+            document.getElementById('board').innerHTML = "";
+            var content = document.getElementById("userinput").value;
+            if (content == ""){
+                alert("请输入句子!")
+            }else{
+                document.getElementById("loadtitle").innerHTML = "正在进行分析,请耐心进行等待"
+                document.getElementById('result').style.display="none";
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        myfunction(this.responseText);
+                        document.getElementById("loadtitle").innerHTML = "输入中文句子, 点击按钮进行词性标注";
+                        document.getElementById("userinput").value = "";
+                    }
+                };
+                xhttp.open("POST", "/predict", true);
+                xhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded')
+                xhttp.send('content='+content);
+            }    
+        }
+        function myfunction(text){
+            document.getElementById('result').style.display="block";
+            var parent = document.getElementById('board');
+            seq_lst = text.split("&");
+            for(var i = 0; i < seq_lst.length-1;i++){
+                seq = seq_lst[i].split(' ')
+                inner_html = '<p>'
+                for(var j=0; j<seq.length;j++){
+                    token = seq[j].split('/')
+                    inner_html += token[0]+'/'+'<span>'+token[1]+'</span>'
+                    inner_html += "&nbsp;&nbsp;"
+                }
+                inner_html += '</p>'
+                parent.innerHTML +=inner_html
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="信息管理系 冯冉">
+    <meta name="keyword" content="隐马尔可夫模型;词性标注">
+    <meta name="description" content="利用哈工大开发的ltp模型进行中文分词, 并通过隐马尔可夫模型进行词性标注">
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"/>
+</head>
+<body>
+    <div class="header" id="header">
+        <div id="logo">
+            <a href="/index">MHPT</a>
+        </div>
+        <ul id="nav">
+            {% block header %}{% endblock %}
+            <li><a href="/">Github代码</a></li>
+        </ul>
+    </div>
+    <div class="main" id="main">
+        {% block main %}{% endblock %}
+    </div>
+
+</body>
+</html>
