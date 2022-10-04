@@ -8,17 +8,13 @@ app = Flask(__name__)
 app.debug=True
 
 @app.route('/')
-def index():  # 重定向到主页
-    return redirect(url_for('index'))
-
-@app.route('/index')
-def welcome():  # 主页
+def index():  # 主页
     return render_template('index.html')
 
-# 预先加载标注器, 节约时间
+# 预先加载标注器, (试图)节约时间
 hmmtagger = hmm.HmmPosTagger()
-hmmtagger.init_restart('../hmm/1998-01-2003版-带音.txt')
-hmmtagger.train('../hmm/1998-01-2003版-带音.txt')
+hmmtagger.init_restart('1998-01-2003版-带音.txt')
+hmmtagger.train('1998-01-2003版-带音.txt')
 
 @app.route('/tagger')
 def tagger():  # 实战页面
@@ -27,10 +23,11 @@ def tagger():  # 实战页面
 @app.route('/predict',methods=['GET','POST'])
 def predict():
     if request.method == 'POST':
-        content = request.form['content']
-        sentence_lst = re.split("\n",content)
-        result = [hmmtagger.viterbi_predict(sentence)+"&" for sentence in sentence_lst]
-        return " ".join(result)
+        content = request.form['content']  # 获取用户输入内容
+        content = content.strip()
+        sentence_lst = re.split("\n",content)  # 进行切分
+        result = [hmmtagger.viterbi_predict(sentence)+"&" for sentence in sentence_lst]  # 获得结果列表（句子之间）用“&”连接
+        return " ".join(result)  # 以字符串的形势进行传输
     
 
 # 运行app
