@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import HmmPosTagger as hmm
 import re
+import os
 
 
 # 注册app
@@ -13,8 +14,8 @@ def index():  # 主页
 
 # 预先加载标注器, (试图)节约时间
 hmmtagger = hmm.HmmPosTagger()
-hmmtagger.init_restart('1998-01-2003版-带音.txt')
-hmmtagger.train('1998-01-2003版-带音.txt')
+hmmtagger.init_restart(r'hmmpostagger/traindata.txt')
+hmmtagger.train(r'hmmpostagger/traindata.txt')
 
 @app.route('/tagger')
 def tagger():  # 实战页面
