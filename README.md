@@ -4,6 +4,11 @@
 ## 运行项目
 推荐使用命令行运行项目
 
+### 打开根目录
+```
+cd HmmPosTagger
+```
+
 ### 运行虚拟环境
 ```
 . venv/bin/activate
