@@ -14,8 +14,12 @@ def index():  # 主页
 
 # 预先加载标注器, (试图)节约时间
 hmmtagger = hmm.HmmPosTagger()
-hmmtagger.init_restart(r'hmmpostagger/traindata.txt')
-hmmtagger.train(r'hmmpostagger/traindata.txt')
+if os.getcwd()[-12] == 'h':  # 视运行时的工作目录决定相对路径
+    hmmtagger.init_restart(r'traindata.txt')
+    hmmtagger.train(r'traindata.txt')
+else:
+    hmmtagger.init_restart(r'hmmpostagger/traindata.txt')
+    hmmtagger.train(r'hmmpostagger/traindata.txt')
 
 @app.route('/tagger')
 def tagger():  # 实战页面

@@ -163,7 +163,7 @@ class HmmPosTagger(object):
 
 if __name__ == '__main__':
     tagger = HmmPosTagger()
-    tagger.init_restart(r'hmmpostagger/traindata.txt')
-    tagger.train(r'hmmpostagger/traindata.txt')
+    tagger.init_restart(r'traindata.txt')
+    tagger.train(r'traindata.txt')
     sentence = input()
     print(tagger.viterbi_predict(sentence))
