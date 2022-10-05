@@ -4,14 +4,32 @@
 ## 运行项目
 推荐使用命令行运行项目
 
+### 下载项目
+```
+git clone https://github.com/F-crystal/HmmPosTagger.git
+```
+
 ### 打开根目录
 ```
 cd HmmPosTagger
 ```
 
+### 创建虚拟环境
+```
+python3 -m venv venv
+```
+
 ### 运行虚拟环境
 ```
 . venv/bin/activate
+```
+
+### 安装对应包
+包括flask, torch, ltp等(推荐使用pip下载)
+```
+pip install flask
+pip install torch
+pip install ltp
 ```
 
 ### 打开文件目录
