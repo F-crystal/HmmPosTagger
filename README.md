@@ -49,5 +49,3 @@ cd hmmpostagger
 flask run
 ```
 
-## 版权许可
-Copyright[Apache 2.0][fengran]
