@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="信息管理系 冯冉">
     <meta name="keyword" content="隐马尔可夫模型;词性标注">
-    <meta name="description" content="利用哈工大开发的ltp模型进行中文分词, 并通过隐马尔可夫模型进行词性标注">
+    <meta name="description" content="使用北京大学计算语言学教育部重点实验室的现代汉语切分、标注、注音语料库-1998年1月份样例与规范数据生成语料库,对隐马尔可夫模型进行训练,同时利用哈尔滨工业大学开发的LTP语言技术平台对输入句子进行分词处理，从而实现对输入中文句子的词性标注序列预测；使用Stanford Log-linear Part-Of-Speech Tagger生成语料库并进行隐马尔可夫模型训练，同时利用nltk对输入句子进行分词处理，从而实现对输入英文句子的词性标注序列预测">
     <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico') }}" type="image/x-icon">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"/>

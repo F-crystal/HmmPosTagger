@@ -7,8 +7,13 @@
 {% block main %}
     <div id="container" class="'container">
         <div id="row">
-            <h3 id="loadtitle">输入中文句子, 点击按钮进行词性标注</h3>
-            <textarea id="userinput">他拿着外衣</textarea>
+            <h3 id="loadtitle">输入句子, 点击按钮进行词性标注</h3>
+            <textarea id="userinput"></textarea>
+            <select id="language" onchange="selectlan()">
+                <option value="" selected>--请选择语言--</option>
+                <option value="ch">中文</option>
+                <option value="en">English</option>
+            </select>
             <button id="analysis" onclick="tagger()">分析</button>
         </div>
         <div id="result" style="display: none;">
@@ -16,4 +21,6 @@
             <div id="board"></div>
         </div>
     </div>
+    <script>
+    </script>
 {% endblock %}
