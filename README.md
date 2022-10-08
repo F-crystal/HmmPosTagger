@@ -11,6 +11,8 @@
 
 Stanford Log-linear Part-Of-Speech Tagger：http://nlp.stanford.edu/software/tagger.shtml
 
+工具：使用flask框架，前端使用html+css+javascript，后端使用python
+
 ## 运行项目
 推荐使用命令行运行项目
 
