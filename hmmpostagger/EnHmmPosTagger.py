@@ -5,11 +5,14 @@ from nltk import word_tokenize
 
 
 class EnHmmPosTagger(object):
-    """
-    使用Stanford Log-linear Part-Of-Speech Tagger生成语料库对隐马尔可夫模型进行训练，实现对输入句子的词性标注序列预测
-    """
 
-    def __init__(self):
+    def __init__(self, dic_file: str, file_type: str = 'utf-8') -> None:
+        """
+        用语料库文件重新生成进行初始化
+        :param dic_file: 一个表示语料库文件名称的字符串
+        :param file_type: 读取文件时的解码方式，如'gbk'，'utf-8'
+        :return: 
+        """
         # 初始化语料库(生成状态的集合和可观测符号的集合）
         self._word2id = {}  # 形如{word: id}，其中id用于矩阵的序号
         self._pos2id = {}  # 形如{pos: id}，其中id用于矩阵的序号
@@ -22,14 +25,6 @@ class EnHmmPosTagger(object):
         # 初始化集合长度
         self._pos_length = 0
         self._word_length = 0
-
-    def init_restart(self, dic_file: str, file_type: str = 'utf-8') -> None:
-        """
-        用语料库文件重新生成进行初始化
-        :param dic_file: 一个表示语料库文件名称的字符串
-        :param file_type: 读取文件时的解码方式，如'gbk'，'utf-8'
-        :return: 
-        """
         with open(dic_file, encoding=file_type) as data:
             for line in data:
                 line = line.strip()  # 去掉头尾空格

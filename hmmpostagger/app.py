@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import HmmPosTagger as hmm
 import EnHmmPosTagger as enhmm
 import re
@@ -14,20 +14,18 @@ def index():  # 主页
     return render_template('index.html')
 
 # 预先加载标注器, (试图)节约时间
-hmmtagger = hmm.HmmPosTagger()
 if os.getcwd()[-12] == 'h':  # 视运行时的工作目录决定相对路径
-    hmmtagger.init_restart(r'traindata.txt')
+    hmmtagger = hmm.HmmPosTagger(r'traindata.txt')
     hmmtagger.train(r'traindata.txt')
 else:
-    hmmtagger.init_restart(r'hmmpostagger/traindata.txt')
+    hmmtagger = hmm.HmmPosTagger(r'hmmpostagger/traindata.txt')
     hmmtagger.train(r'hmmpostagger/traindata.txt')
 
-enhmmtagger = enhmm.EnHmmPosTagger()
 if os.getcwd()[-12] == 'h':  # 视运行时的工作目录决定相对路径
-    enhmmtagger.init_restart(r'data.txt')
+    enhmmtagger = enhmm.EnHmmPosTagger(r'data.txt')
     enhmmtagger.train(r'data.txt')
 else:
-    enhmmtagger.init_restart(r'hmmpostagger/data.txt')
+    enhmmtagger = enhmm.EnHmmPosTagger(r'hmmpostagger/data.txt')
     enhmmtagger.train(r'hmmpostagger/data.txt')
 
 @app.route('/tagger')

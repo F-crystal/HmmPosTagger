@@ -9,9 +9,14 @@ class HmmPosTagger(object):
     使用北京大学计算语言学教育部重点实验室的现代汉语切分、标注、注音语料库-1998年1月份样例与规范数据生成语料库，
     对隐马尔可夫模型进行训练，实现对输入句子的词性标注序列预测
     """
-
-    def __init__(self):
-        # 初始化语料库(生成状态的集合和可观测符号的集合）
+    def __init__(self, dic_file: str, file_type: str = 'gbk') -> None:
+        """
+        用语料库文件重新生成进行初始化
+        :param dic_file: 一个表示语料库文件名称的字符串
+        :param file_type: 读取文件时的解码方式，如'gbk'，'utf-8'
+        :return: 
+        """
+         # 初始化语料库(生成状态的集合和可观测符号的集合）
         self._word2id = {}  # 形如{word: id}，其中id用于矩阵的序号
         self._pos2id = {}  # 形如{pos: id}，其中id用于矩阵的序号
 
@@ -24,13 +29,6 @@ class HmmPosTagger(object):
         self._pos_length = 0
         self._word_length = 0
 
-    def init_restart(self, dic_file: str, file_type: str = 'gbk') -> None:
-        """
-        用语料库文件重新生成进行初始化
-        :param dic_file: 一个表示语料库文件名称的字符串
-        :param file_type: 读取文件时的解码方式，如'gbk'，'utf-8'
-        :return: 
-        """
         with open(dic_file, encoding=file_type) as data:
             for line in data:
                 line = line.strip()  # 去掉头尾空格
